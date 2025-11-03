@@ -9,8 +9,9 @@ import { Router } from "express";
 const router = Router();
 
 router.get("/", categoriesController.getAll);
-router.get("/:id", categoriesController.getById);
+router.get("/with-codes", categoriesController.getAllWithCodes);
 router.get("/:id/codes", categoriesController.getWithCodes);
+router.get("/:id", categoriesController.getById);
 router.post("/", validate(createCategorySchema), categoriesController.create);
 router.put("/:id", validate(updateCategorySchema), categoriesController.update);
 router.delete("/:id", categoriesController.delete);

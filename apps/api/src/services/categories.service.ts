@@ -22,6 +22,21 @@ export class CategoriesService {
     return category;
   }
 
+  async getAllWithCodes() {
+    const categories = await categoriesRepository.findAll();
+
+    const categoriesWithCodes = await Promise.all(
+      categories.map(async (category) => {
+        const categoryWithCodes = await categoriesRepository.findByIdWithCodes(
+          category.id
+        );
+        return categoryWithCodes;
+      })
+    );
+
+    return categoriesWithCodes;
+  }
+
   async getWithCodes(id: number) {
     const category = await categoriesRepository.findByIdWithCodes(id);
 

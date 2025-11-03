@@ -6,180 +6,246 @@ dotenv.config();
 
 const seedData = [
   {
-    category: "Respuestas Informativas",
-    description: "Indican que la solicitud fue recibida y se está procesando",
+    category: "Informational Responses",
+    description:
+      "Indicate that the request was received and is being processed",
     color: "info",
     codes: [
       {
         code: 100,
         name: "Continue",
         description:
-          "El servidor ha recibido los encabezados de la solicitud y el cliente puede continuar enviando el cuerpo",
+          "The server has received the request headers and the client should proceed to send the request body.",
       },
       {
         code: 101,
         name: "Switching Protocols",
         description:
-          "El servidor acepta cambiar el protocolo según lo solicitado por el cliente",
+          "The requester has asked the server to switch protocols and the server has agreed to do so.",
       },
       {
         code: 102,
         name: "Processing",
         description:
-          "El servidor ha recibido y está procesando la solicitud, pero aún no hay respuesta disponible",
+          "The server has received and is processing the request, but no response is available yet.",
+      },
+      {
+        code: 103,
+        name: "Early Hints",
+        description:
+          "The server is sending some response headers before the final response.",
       },
     ],
   },
   {
-    category: "Respuestas Exitosas",
+    category: "Successful Responses",
     description:
-      "La solicitud fue recibida, entendida y procesada correctamente",
+      "The request was successfully received, understood, and processed.",
     color: "success",
     codes: [
       {
         code: 200,
         name: "OK",
         description:
-          "La solicitud ha tenido éxito. El significado depende del método HTTP utilizado",
+          "The request has succeeded. The meaning depends on the HTTP method used.",
       },
       {
         code: 201,
         name: "Created",
         description:
-          "La solicitud ha tenido éxito y se ha creado un nuevo recurso como resultado",
+          "The request succeeded, and a new resource was created as a result.",
       },
       {
         code: 202,
         name: "Accepted",
         description:
-          "La solicitud ha sido aceptada para procesamiento, pero no se ha completado",
+          "The request has been accepted for processing, but the processing is not complete.",
+      },
+      {
+        code: 203,
+        name: "Non-Authoritative Information",
+        description:
+          "The returned metadata may not be the definitive set from the origin server.",
       },
       {
         code: 204,
         name: "No Content",
         description:
-          "La solicitud se procesó correctamente pero no hay contenido para devolver",
+          "The server successfully processed the request but is not returning any content.",
+      },
+      {
+        code: 205,
+        name: "Reset Content",
+        description:
+          "Tells the user agent to reset the document view that caused the request.",
+      },
+      {
+        code: 206,
+        name: "Partial Content",
+        description:
+          "The server is delivering only part of the resource due to a range header sent by the client.",
       },
     ],
   },
   {
-    category: "Redirecciones",
-    description: "Se requiere una acción adicional para completar la solicitud",
+    category: "Redirection Messages",
+    description: "Further action needs to be taken to complete the request.",
     color: "info",
     codes: [
+      {
+        code: 300,
+        name: "Multiple Choices",
+        description:
+          "The requested resource has multiple choices for representation.",
+      },
       {
         code: 301,
         name: "Moved Permanently",
         description:
-          "El recurso solicitado ha sido movido permanentemente a una nueva URL",
+          "The requested resource has been permanently moved to a new URL.",
       },
       {
         code: 302,
         name: "Found",
         description:
-          "El recurso solicitado reside temporalmente en una URL diferente",
+          "The requested resource resides temporarily under a different URL.",
+      },
+      {
+        code: 303,
+        name: "See Other",
+        description:
+          "The server directs the client to retrieve the resource at another URI using GET.",
       },
       {
         code: 304,
         name: "Not Modified",
         description:
-          "El recurso no ha sido modificado desde la última solicitud",
+          "The resource has not been modified since the version specified by the request headers.",
       },
       {
         code: 307,
         name: "Temporary Redirect",
         description:
-          "El recurso reside temporalmente en otra URL, manteniendo el método HTTP",
+          "The requested resource resides temporarily under a different URI, preserving the method.",
       },
       {
         code: 308,
         name: "Permanent Redirect",
         description:
-          "El recurso ha sido movido permanentemente, manteniendo el método HTTP",
+          "The requested resource has been permanently moved to a new URI, preserving the method.",
       },
     ],
   },
   {
-    category: "Errores del Cliente",
-    description:
-      "La solicitud contiene sintaxis incorrecta o no puede ser procesada",
+    category: "Client Errors",
+    description: "The request contains bad syntax or cannot be fulfilled.",
     color: "warning",
     codes: [
       {
         code: 400,
         name: "Bad Request",
         description:
-          "El servidor no puede procesar la solicitud debido a un error del cliente",
+          "The server cannot process the request due to a client error (e.g., malformed syntax).",
       },
       {
         code: 401,
         name: "Unauthorized",
-        description: "Se requiere autenticación para acceder al recurso",
+        description: "Authentication is required to access the resource.",
+      },
+      {
+        code: 402,
+        name: "Payment Required",
+        description:
+          "Reserved for future use, initially intended for digital payment systems.",
       },
       {
         code: 403,
         name: "Forbidden",
         description:
-          "El servidor entiende la solicitud pero se niega a autorizarla",
+          "The server understands the request but refuses to authorize it.",
       },
       {
         code: 404,
         name: "Not Found",
-        description: "El servidor no puede encontrar el recurso solicitado",
+        description: "The requested resource could not be found.",
       },
       {
         code: 405,
         name: "Method Not Allowed",
         description:
-          "El método HTTP utilizado no está permitido para este recurso",
+          "The HTTP method is not allowed for the requested resource.",
+      },
+      {
+        code: 406,
+        name: "Not Acceptable",
+        description:
+          "The requested resource is not available in a format acceptable to the client.",
       },
       {
         code: 408,
         name: "Request Timeout",
-        description: "El servidor agotó el tiempo de espera para la solicitud",
+        description: "The server timed out waiting for the request.",
+      },
+      {
+        code: 409,
+        name: "Conflict",
+        description:
+          "The request could not be completed due to a conflict with the current state of the resource.",
+      },
+      {
+        code: 410,
+        name: "Gone",
+        description:
+          "The requested resource is no longer available and will not be available again.",
       },
       {
         code: 429,
         name: "Too Many Requests",
         description:
-          "El usuario ha enviado demasiadas solicitudes en un período de tiempo",
+          "The user has sent too many requests in a given amount of time.",
       },
     ],
   },
   {
-    category: "Errores del Servidor",
-    description: "El servidor falló al intentar procesar una solicitud válida",
+    category: "Server Errors",
+    description: "The server failed to fulfill a valid request.",
     color: "error",
     codes: [
       {
         code: 500,
         name: "Internal Server Error",
         description:
-          "El servidor encontró una situación inesperada que le impidió completar la solicitud",
+          "The server encountered an unexpected condition that prevented it from fulfilling the request.",
       },
       {
         code: 501,
         name: "Not Implemented",
         description:
-          "El servidor no reconoce el método de solicitud o no puede cumplirlo",
+          "The server does not support the functionality required to fulfill the request.",
       },
       {
         code: 502,
         name: "Bad Gateway",
         description:
-          "El servidor actuando como gateway recibió una respuesta inválida del servidor upstream",
+          "The server received an invalid response from the upstream server.",
       },
       {
         code: 503,
         name: "Service Unavailable",
         description:
-          "El servidor no está disponible temporalmente, generalmente por mantenimiento",
+          "The server is currently unavailable, usually due to maintenance or overload.",
       },
       {
         code: 504,
         name: "Gateway Timeout",
         description:
-          "El servidor actuando como gateway no recibió respuesta a tiempo del servidor upstream",
+          "The server acting as a gateway did not receive a timely response from the upstream server.",
+      },
+      {
+        code: 505,
+        name: "HTTP Version Not Supported",
+        description:
+          "The server does not support the HTTP protocol version used in the request.",
       },
     ],
   },
@@ -189,6 +255,12 @@ const seed = async () => {
   console.log("🌱 Seeding database...");
 
   try {
+    // 🧹 Clean existing data
+    console.log("🧨 Clearing existing data...");
+    await db.delete(statusCodes);
+    await db.delete(categories);
+
+    // 🧩 Insert new data
     for (const item of seedData) {
       const [category] = await db
         .insert(categories)
@@ -213,7 +285,7 @@ const seed = async () => {
       console.log(`   ✅ Created ${item.codes.length} status codes`);
     }
 
-    console.log("✅ Seeding completed");
+    console.log("✅ Seeding completed successfully!");
     process.exit(0);
   } catch (error) {
     console.error("❌ Seeding failed");

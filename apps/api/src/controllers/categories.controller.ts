@@ -42,6 +42,18 @@ export class CategoriesController {
     }
   }
 
+  async getAllWithCodes(_req: Request, res: Response, next: NextFunction) {
+    try {
+      const categoriesWithCodes = await categoriesService.getAllWithCodes();
+      res.json({
+        status: "success",
+        data: categoriesWithCodes,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       const newCategory = await categoriesService.create(req.body);
