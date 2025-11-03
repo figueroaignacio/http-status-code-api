@@ -4,6 +4,7 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
+import routes from "./routes";
 
 const app = express();
 
@@ -24,10 +25,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 
 // API routes
-// app.use('/api', routes);
+app.use("/api", routes);
 
 // 404 handler
-app.use((req, res) => {
+app.use((_req, res) => {
   res.status(404).json({
     status: "error",
     message: "Route not found",

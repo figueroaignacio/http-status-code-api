@@ -26,3 +26,5 @@ router.put(
   statusCodesController.update
 );
 router.delete("/:id", statusCodesController.delete);
+
+export default router;
