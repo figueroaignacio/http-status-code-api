@@ -1,21 +1,28 @@
 {
-  "name": "http-code-status-api",
+  "name": "http-status-codes-monorepo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "dev": "pnpm --filter api dev",
-    "build": "pnpm --filter api build",
+    "dev": "pnpm --parallel --filter api --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "dev:web": "pnpm --filter web dev",
+    "build": "pnpm --filter api build && pnpm --filter web build",
+    "build:api": "pnpm --filter api build",
+    "build:web": "pnpm --filter web build",
     "start": "pnpm --filter api start",
+    "start:api": "pnpm --filter api start",
+    "preview:web": "pnpm --filter web preview",
     "db:generate": "pnpm --filter api db:generate",
     "db:migrate": "pnpm --filter api db:migrate",
     "db:studio": "pnpm --filter api db:studio",
     "db:seed": "pnpm --filter api db:seed",
-    "lint": "pnpm --filter api lint",
-    "clean": "pnpm -r exec rm -rf dist node_modules"
+    "lint": "pnpm -r lint",
+    "lint:api": "pnpm --filter api lint",
+    "lint:web": "pnpm --filter web lint",
+    "clean": "pnpm -r exec rm -rf dist node_modules .turbo"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.14.0"
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
 }
