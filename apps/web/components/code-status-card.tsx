@@ -18,7 +18,7 @@ export function CodeStatusCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-xl border border-border bg-card h-full p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1",
+        "group relative overflow-hidden rounded-xl bg-card h-full p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1",
         colorClasses.bg
       )}>
       <div
